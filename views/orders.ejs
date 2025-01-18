@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Bestellungen</title>
+</head>
+<body>
+  <h1>Ihre Bestellungen</h1>
+  <ul>
+    <% orders.forEach(order => { %>
+      <li>
+        Material: <%= order.material %>, Volumen: <%= order.volume %> cm³, Preis: <%= order.price %> €
+      </li>
+    <% }) %>
+  </ul>
+  <form action="/orders/submit" method="POST" enctype="multipart/form-data">
+    <h2>Neue Bestellung</h2>
+    <label>Material:</label>
+    <input type="text" name="material" required><br>
+    <label>Volumen (cm³):</label>
+    <input type="number" name="volume" required><br>
+    <label>Auflösung:</label>
+    <select name="resolution">
+      <option value="low">Niedrig</option>
+      <option value="medium">Mittel</option>
+      <option value="high">Hoch</option>
+    </select><br>
+    <label>STL-Datei:</label>
+    <input type="file" name="stlFile" required><br>
+    <button type="submit">Bestellung aufgeben</button>
+  </form>
+</body>
+</html>
